@@ -46,16 +46,25 @@ fn main() {
 		left_vec.sort();
 		right_vec.sort();
 
-		let length = left_vec.len();
+		let mut score = 0;
+		let mut nr = 0;
 
-		for i in 0..length{
+		for l_el in &left_vec{
+			
+			for r_el in &right_vec{
+				if r_el == l_el {
+					nr += 1;
 
-			diff_sum += (left_vec[i] - right_vec[i]).abs();
+				}
 
-		}
+			}
+			println!("Number in right list: {} appears in the left list {} times.",l_el, nr);
+			let score_increase = l_el * nr;
+			println!("The score increased by {}", score_increase);			
+			score += score_increase;
+			nr = 0;
+		} 
 
-
-	println!("The final sum is:{}",diff_sum);
-
+		println!("The similarity score is:{}",score);
 
 }
